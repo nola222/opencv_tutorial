@@ -12,14 +12,14 @@
 import cv2
 
 # 初始化
-cap = cv2.VideoCapture()
+cap = cv2.VideoCapture(0)  # 参数0 一般电脑内置摄像头参数
 
 # 定义4字符编码表示视频数据流格式，即输入4字符代码即可得到对应的视频编码器。
 fourcc = cv2.VideoWriter_fourcc(*'XVID')  # 使用XVID视频编码器
 # 创建VideoWriter对象 参数三帧率
 out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
 
-while (cap.isOpened()):
+while cap.isOpened():
     ret, frame = cap.read()
     if ret:
         frame = cv2.flip(frame, 0)  # 0垂直翻转，1水平翻转，-1水平垂直翻转
